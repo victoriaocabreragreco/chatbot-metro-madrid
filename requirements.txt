@@ -1,0 +1,5 @@
+gradio==5.34.0
+networkx
+pandas
+transformers
+torch
