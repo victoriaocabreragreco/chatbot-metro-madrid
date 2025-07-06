@@ -28,12 +28,11 @@ def find_route(G, origin, destination):
             to_station=path[i+1]
 
             data= G.get_edge_data(from_station, to_station)  ### we need to do this, so we obtained the line of the metro
-            if data:
-                line=data.get('line','unknown')
-                head=data.get('Direction_head','')
-                output.append(f'{from_station} -> {to_station} (Line {line} -> {head})')
-            else:
-                output.append(f'{from_station} -> {to_station}')
+            line=data.get('line','N/A')
+            head=data.get('Direction_head','N/A')
+            step=f'{from_station} -> {to_station} (Line {line} -> {head})'
+            output.append(step)
+
         return '\n'.join(output)
     except nx.NetworkXNoPath:
         return f"No route found from {origin} to {destination}"
@@ -46,6 +45,7 @@ def extract_stations(text):
     return stations    
 
 def chat_bot(user_input, history):
+    user_input = user_input.title()
     stations=extract_stations(user_input)
     if len(stations) <2:
         return 'Please mention both origin and destination station'
