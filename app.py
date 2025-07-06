@@ -29,7 +29,7 @@ def find_route(G, origin, destination):
 
             data= G.get_edge_data(from_station, to_station)  ### we need to do this, so we obtained the line of the metro
             line=data.get('line','N/A')
-            head=data.get('Direction_head','N/A')
+            head=data.get('direction','N/A')
             step=f'{from_station} -> {to_station} (Line {line} -> {head})'
             output.append(step)
 
