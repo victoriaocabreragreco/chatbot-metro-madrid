@@ -33,7 +33,7 @@ def find_route(G, origin, destination):
             step=f'{from_station} -> {to_station} (Line {line} -> {head})'
             output.append(step)
 
-        return '\n'.join(output)
+        return '\n'.join([f"- {step}" for step in output])
     except nx.NetworkXNoPath:
         return f"No route found from {origin} to {destination}"
     except nx.NodeNotFound as e:
@@ -52,5 +52,7 @@ def chat_bot(user_input, history):
     return find_route(G, stations[0], stations[1])
 
 
-demo = gr.ChatInterface(chat_bot)
+demo = gr.ChatInterface(chat_bot,title="🚇 Madrid Metro Assistant",
+    description="Ask how to get from one station to another across Madrid Metro. Example: *'How do I go from Sol to Tribunal?*'",
+    theme="soft")
 demo.launch()
