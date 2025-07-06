@@ -34,7 +34,7 @@ def find_route(G, origin, destination):
                 output.append(f'{from_station} -> {to_station} (Line {line} -> {head})')
             else:
                 output.append(f'{from_station} -> {to_station}')
-        return '\n.join(output)
+        return '\n'.join(output)
     except nx.NetworkXNoPath:
         return f"No route found from {origin} to {destination}"
     except nx.NodeNotFound as e:
