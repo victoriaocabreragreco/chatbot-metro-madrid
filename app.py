@@ -32,7 +32,7 @@ def extract_stations(text):
     stations=[ent['word'] for ent in ner_results if ent['entity_group'] == 'LOC']
     return stations    
 
-def chat_bot(user_input):
+def chat_bot(user_input, history):
     stations=extract_stations(user_input)
     if len(stations) <2:
         return 'Please mention both origin and destination station'
