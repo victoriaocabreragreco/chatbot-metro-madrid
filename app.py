@@ -12,8 +12,8 @@ for _, row in metro.iterrows():
         row['From_Station'],
         row['To_Station'],
         line=row['line_from'],
-        direction=['Direction_head'],
-        is_tranfer=['is_transfer']        
+        direction=row['Direction_head'],
+        is_tranfer=row['is_transfer']        
     )
 
 ner_pipeline=pipeline('ner',model='dslim/bert-base-NER', grouped_entities=True)   #grouped_entities call groups together tokens that belong to the same entity
