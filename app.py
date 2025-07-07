@@ -52,7 +52,5 @@ def chat_bot(user_input, history):
     return find_route(G, stations[0], stations[1])
 
 
-demo = gr.ChatInterface(chat_bot,title="🚇 Madrid Metro Assistant",
-    description="Ask how to get from one station to another across Madrid Metro. Example: *'How do I go from Sol to Tribunal?*'",
-    theme="soft")
+demo = gr.ChatInterface(chat_bot,title="🚇 Madrid Metro Assistant")
 demo.launch()
