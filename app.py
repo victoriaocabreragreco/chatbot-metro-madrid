@@ -8,6 +8,10 @@ from transformers import pipeline
 metro = pd.read_csv('M4_Estaciones_FULL.csv', sep=';')
 G= nx.Graph()
 
+## Adding station_list for further using in fuzzy function
+station_list = set(metro['From_Station']).union(set(metro['To_Station']))
+station_list = list(station_list)
+
 for _, row in metro.iterrows():
     G.add_edge(
         row['From_Station'],
