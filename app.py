@@ -57,10 +57,23 @@ def find_route(G, origin, destination):
 
 def extract_stations(text):
     ner_results= ner_pipeline(text)
-    stations=[ent['word'] for ent in ner_results if ent['entity_group'] == 'LOC']
+
+    grouped = []
+    current = []
+
+    for ent in ner_results:
+        if ent["entity_group"] == "LOC":
+            current.append(ent["word"])
+        else:
+            if current:
+                grouped.append(" ".join(current))
+                current = []
+    if current:
+        grouped.append(" ".join(current))
+    
     matched_stations=[]
 
-    for s in stations:
+    for s in grouped:
         matched = fuzzy_match(s.title(), station_list)
         if matched:
             matched_stations.append(matched)    
