@@ -3,3 +3,4 @@ networkx
 pandas
 transformers
 torch
+rapidfuzz
