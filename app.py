@@ -1,6 +1,7 @@
 import gradio as gr
 import networkx as nx
 import pandas as pd
+import rapidfuzz import process
 from transformers import pipeline
 
 
@@ -17,6 +18,17 @@ for _, row in metro.iterrows():
     )
 
 ner_pipeline=pipeline('ner',model='dslim/bert-base-NER', grouped_entities=True)   #grouped_entities call groups together tokens that belong to the same entity
+
+def fuzzy_match(name, station_list,threshold=80):
+    '''
+    In this case, match receive the best match from the list
+    Score --> the similarity score btw name and the match
+    Last one, match_index, is the index of the match inside the list. In this case, we don't need it
+    That is the reason why an underscore appears.    
+    '''
+    match, score, _ = process.extractOne(name,station_list)
+    return match if score >= threshold else None
+    
 
 def find_route(G, origin, destination):
     try:
@@ -42,7 +54,13 @@ def find_route(G, origin, destination):
 def extract_stations(text):
     ner_results= ner_pipeline(text)
     stations=[ent['word'] for ent in ner_results if ent['entity_group'] == 'LOC']
-    return stations    
+    matched_stations=[]
+
+    for s in stations:
+        matched = fuzzy_match(s.title(), station_list)
+        if matched:
+            matched_stations.append(matched)    
+    return matched_stations    
 
 def chat_bot(user_input, history):
     user_input = user_input.title()
