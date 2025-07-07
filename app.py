@@ -38,7 +38,7 @@ def find_route(G, origin, destination):
     try:
         path= nx.shortest_path(G, source=origin, target=destination)
 
-        output=[]
+        output=["🗺️ Metro Route:"]
         for i in range(len(path)-1):
             from_station=path[i]
             to_station=path[i+1]
@@ -46,14 +46,14 @@ def find_route(G, origin, destination):
             data= G.get_edge_data(from_station, to_station)  ### we need to do this, so we obtained the line of the metro
             line=data.get('line','N/A')
             head=data.get('direction','N/A')
-            step=f'{from_station} -> {to_station} (Line {line} -> {head})'
+            step=f'🚉 {from_station} ➡️ {to_station} (Line {line} 🚦 {head})'
             output.append(step)
 
         return '\n'.join(output)
     except nx.NetworkXNoPath:
-        return f"No route found from {origin} to {destination}"
+        return f"🚫 No route found from {origin} to {destination}"
     except nx.NodeNotFound as e:
-        return str(e)
+        return f"❌ {str(e)}"
 
 def extract_stations(text):
     ner_results= ner_pipeline(text)
