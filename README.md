@@ -1,3 +1,8 @@
+---
+title: Madrid Metro Assistant
+sdk: gradio
+short_description: Chatbot that helps you find routes between Madrid Metro stat
+---
 # 🚇 Madrid Metro Assistant
 
 A simple chatbot that helps you find routes between Madrid Metro stations — built with 🐍 Python, 🤗 Hugging Face Transformers, 🧠 NetworkX, and 🎨 Gradio!
