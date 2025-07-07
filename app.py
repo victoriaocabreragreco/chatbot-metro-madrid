@@ -1,7 +1,7 @@
 import gradio as gr
 import networkx as nx
 import pandas as pd
-import rapidfuzz import process
+from rapidfuzz import process
 from transformers import pipeline
 
 
