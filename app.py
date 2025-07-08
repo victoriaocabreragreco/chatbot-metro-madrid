@@ -57,28 +57,19 @@ def find_route(G, origin, destination):
         return f"❌ {str(e)}"
 
 def extract_stations(text):
-    ner_results= ner_pipeline(text)
+    text_lower = text.title()
+    ner_results = ner_pipeline(text_lower)
 
-    grouped = []
-    current = []
+   ### raw_stations = [ent["word"] for ent in ner_results if ent["entity_group"] == "LOC"]  #### esto no va, porque no esta extrayendo correctamente por el LOC, ya que cada estacion de metro lo toma con un grupo diferente
+    raw_stations = [ent["word"] for ent in ner_results]
+    matched_stations = []
 
-    for ent in ner_results:
-        if ent["entity_group"] == "LOC":
-            current.append(ent["word"])
-        else:
-            if current:
-                grouped.append(" ".join(current))
-                current = []
-    if current:
-        grouped.append(" ".join(current))
-    
-    matched_stations=[]
-
-    for s in grouped:
-        matched = fuzzy_match(s.title(), station_list)
+    for raw in raw_stations:
+        matched = fuzzy_match(raw.title(), station_list)
         if matched:
-            matched_stations.append(matched)    
-    return matched_stations    
+            matched_stations.append(matched)
+
+    return matched_stations
 
 def chat_bot(user_input, history):
     user_input = user_input.title()
