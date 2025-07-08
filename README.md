@@ -5,7 +5,7 @@ short_description: Chatbot that helps you find routes between Madrid Metro stat
 ---
 # 🚇 Madrid Metro Assistant
 
-A simple chatbot that helps you find routes between Madrid Metro stations — built with 🐍 Python, 🤗 Hugging Face Transformers, 🧠 NetworkX, and 🎨 Gradio!
+A simple chatbot that helps you find routes between Madrid Metro stations — built with Python, Hugging Face Transformers (NER), NetworkX, and  Gradio!
 
 ## 💡 Features
 
@@ -14,6 +14,17 @@ A simple chatbot that helps you find routes between Madrid Metro stations — bu
 - Recognizes station names using a transformer-based NER model
 - Fuzzy matching to correct slight typos in station names
 - Clean and user-friendly interface in dark mode 🌑
+- At the moment, works better for English input
+
+📷 Key Visuals
+
+Thanks to the fuzzy matching library, the bot can handle misspelled station names
+
+![Confusion_Matrix](Images/arguelles-quevedo.png)
+
+And you don’t need to write station names in capital letters — the bot understands lowercase too!
+
+![Confusion_Matrix](Images/pacifico-lavapies.png)
 
 ## 🚀 Try it
 
@@ -21,20 +32,12 @@ A simple chatbot that helps you find routes between Madrid Metro stations — bu
 
 ## 🛠️ Tech Stack
 
-- `Gradio` – frontend UI
-- `NetworkX` – graph logic + pathfinding
-- `Transformers` – for NER (Named Entity Recognition)
-- `RapidFuzz` – fuzzy matching for station names
+- `Gradio` 
+- `NetworkX` 
+- `Transformers` 
+- `RapidFuzz` 
 - `Pandas`
 
-## 📁 Files
 
-- `app.py`: Main logic + chatbot function
-- `metro_data.csv`: Cleaned dataset of metro connections
-- `requirements.txt`: Dependencies
+## ❤️ Built by Victoria
 
-## ❤️ Built by
-
-Victoria
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
