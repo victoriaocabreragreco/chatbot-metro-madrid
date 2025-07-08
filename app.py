@@ -13,6 +13,20 @@ G= nx.Graph()
 station_list = set(metro['From_Station']).union(set(metro['To_Station']))
 station_list = list(station_list)
 
+line_color={
+    '1': "🔵",  # light blue
+    '2': "🔴",  # red
+    '3': "🟡",  # yellow
+    '4': "🟤",  # brown
+    '5': "🟢",  # green
+    '6': "⚪",  # grey (white circle, closest option)
+    '7': "🟠",  # orange
+    '8': "🟥",  # pink/purple (closest match)
+    '9': "🟣",  # dark grey/black button
+    '10': "🔷", # blue diamond — unique and stands out
+    '11': "🟩", # dark green-ish (filled green square as a workaround)
+}
+
 for _, row in metro.iterrows():
     G.add_edge(
         row['From_Station'],
@@ -47,7 +61,8 @@ def find_route(G, origin, destination):
             data= G.get_edge_data(from_station, to_station)  ### we need to do this, so we obtained the line of the metro
             line=data.get('line','N/A')
             head=data.get('direction','N/A')
-            step=f'🚉 {from_station} ➡️ {to_station} (Line {line} 🚦 {head})'
+            color = line_colors.get(str(line), '')
+            step=f'🚉 {from_station} ➡️ {to_station} ({color}Line {line} 🚦 {head})'
             output.append(step)
 
         return '\n'.join(output)
