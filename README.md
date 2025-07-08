@@ -20,11 +20,11 @@ A simple chatbot that helps you find routes between Madrid Metro stations — bu
 
 Thanks to the fuzzy matching library, the bot can handle misspelled station names
 
-![Confusion_Matrix](Images/arguelles-quevedo.png)
+![Metro_fuzzy](Images/arguelles-quevedo.png)
 
 And you don’t need to write station names in capital letters — the bot understands lowercase too!
 
-![Confusion_Matrix](Images/pacifico-lavapies.png)
+![Metro_route](Images/pacifico-lavapies.png)
 
 ## 🚀 Try it
 
