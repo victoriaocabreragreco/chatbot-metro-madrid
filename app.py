@@ -6,6 +6,7 @@ from transformers import pipeline
 
 
 metro = pd.read_csv('M4_Estaciones_FULL.csv', sep=';')
+metro.dropna(inplace=True, axis=1)
 G= nx.Graph()
 
 ## Adding station_list for further using in fuzzy function
